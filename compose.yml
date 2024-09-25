@@ -1,0 +1,21 @@
+version: "3.2"
+services:
+  postgres:
+    container_name: manage_my_shop
+    image: postgres:14-alpine
+    ports:
+      - 5432:5432
+    volumes:
+      - ~/apps/postgres/manage-my-shop:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=S3cret
+      - POSTGRES_USER=citizix_user
+      - POSTGRES_DB=manage_my_shop
+
+    networks:
+      - rabbitmq_go_net
+
+
+networks:
+  rabbitmq_go_net:
+    driver: bridge
